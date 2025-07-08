@@ -1,0 +1,21 @@
+{
+    "name": "Dewangga Chat",
+    "short_name": "Dewangga",
+    "description": "Dewangga Chat.",
+    "start_url": ".",
+    "display": "fullscreen",
+    "background_color": "#F4F4F8",
+    "theme_color": "#0078FF",
+    "icons": [
+        {
+            "src": "image/icon-192.png",
+            "type": "image/png",
+            "sizes": "192x192"
+        },
+        {
+            "src": "image/icon-512.png",
+            "type": "image/png",
+            "sizes": "512x512"
+        }
+    ]
+}
