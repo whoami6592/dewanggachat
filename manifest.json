@@ -3,7 +3,7 @@
     "short_name": "Dewangga",
     "description": "Dewangga Chat.",
     "start_url": ".",
-    "display": "fullscreen",
+    "display": "standalone",
     "background_color": "#F4F4F8",
     "theme_color": "#0078FF",
     "icons": [
