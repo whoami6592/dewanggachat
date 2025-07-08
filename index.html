@@ -30,8 +30,7 @@
         /* == TATA LETAK UTAMA (MENGGUNAKAN DYNAMIC VIEWPORT HEIGHT) == */
         .chat-container {
             display: flex; flex-direction: column; width: 100vw; background-color: #ffffff; margin: 0 auto;
-            height: 100vh; /* Fallback untuk browser lama */
-            height: calc(var(--vh) * 100); /* Menggunakan tinggi dinamis yang dihitung oleh JS */
+            height: 100dvh; /* Menggunakan tinggi dinamis yang dihitung oleh JS */
         }
         .chat-header {
             display: flex; align-items: center; padding: 10px 15px; background-color: #f8f8f8; border-bottom: 1px solid #e7e7e7; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); justify-content: space-between; flex-shrink: 0;
@@ -218,13 +217,13 @@
 
     <script>
         // SCRIPT UNTUK MENGHITUNG TINGGI LAYAR DINAMIS (ANTI-ADDRESS BAR)
-        const setVh = () => {
-            let vh = window.innerHeight * 0.01;
-            document.documentElement.style.setProperty('--vh', `${vh}px`);
-        };
-        window.addEventListener('resize', setVh);
-        window.addEventListener('orientationchange', setVh);
-        setVh(); // Jalankan saat pertama kali dimuat
+        //const setVh = () => {
+            //let vh = window.innerHeight * 0.01;
+            //document.documentElement.style.setProperty('--vh', `${vh}px`);
+        //};
+        //window.addEventListener('resize', setVh);
+        //window.addEventListener('orientationchange', setVh);
+        //setVh(); // Jalankan saat pertama kali dimuat
 
         const dewanggaReplies = ["Gak tau males pengen beli trek", "Gatau males pengen beli trek", "Ga tau males pengen beli trek", "Nggak tau males pengen beli trek", "Kagak tau males pengen beli trek", "Gak tau maleus pengen beli trek", "Gak tau mager pengen beli trek", "Gak tau mls pengen beli trek", "Gatau malezz pengen beli trek", "Gak tau malesss pengen beli trek", "Gak tau males pingin beli trek", "Gak tau males mau beli trek", "Gak tau males pgn beli trek", "Gak tau males ingin beli trek", "Gak tau males kepengen beli trek", "Gak tau males pengen bli trek", "Gak tau males pengen ngebeli trek", "Gak tau males pengen borong trek", "Gatau males pgn bli trek", "Gak tau males mau bli trek", "Gak tau males pengen beli treuk", "Gak tau males pengen beli treq", "Gak tau males pengen beli treg", "Gak tau males pengen beli truk", "Gak tau males pengen beli trekk", "Gk tau mls pgn bli trek", "Gatau mager mau beli treq", "Nggak tau maleus pingin beli treuk", "Ga tau mls kepengen beli truk", "Kagatau mager pgn bli treg", "Gak tauuu malesss pengen beli treeeeek", "Gatauuu mager pingin beli treukkkk", "Gak tau maleeeus mau beli treq", "Nggak tau males pengen beli tre-e-e-ek", "Gaaak tauuu males pgn beli truuuk", "GATAU MALES PENGEN BELI TREK", "gatau males pengen beli trek", "GAK TAU MALES MAU BELI TRUK", "GK TAU MLS PGN BLI TREQ", "ENGGA TAU MALES PENGEN BELI TREK"];
         
