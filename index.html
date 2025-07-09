@@ -15,13 +15,21 @@
             --background-color: #F4F4F8;
             --text-color-light: #FFFFFF;
             --text-color-dark: #000000;
-            --vh: 1vh; /* Fallback untuk tinggi viewport */
+            --vh: 1vh;
+            /* Fallback untuk tinggi viewport */
         }
-        body, html {
-            margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; background-color: var(--background-color); width: 100%; overflow: hidden;
+
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--background-color);
+            width: 100%;
+            overflow: hidden;
         }
-    
-            /* Menghilangkan highlight biru saat disentuh di mobile */
+
+        /* Menghilangkan highlight biru saat disentuh di mobile */
         * {
             -webkit-tap-highlight-color: transparent;
         }
@@ -29,123 +37,412 @@
 
         /* == TATA LETAK UTAMA (MENGGUNAKAN DYNAMIC VIEWPORT HEIGHT) == */
         .chat-container {
-            display: flex; flex-direction: column; width: 100vw; background-color: #ffffff; margin: 0 auto;
-            height: 100dvh; /* Menggunakan tinggi dinamis yang dihitung oleh JS */
+            display: flex;
+            flex-direction: column;
+            width: 100vw;
+            background-color: #ffffff;
+            margin: 0 auto;
+            height: 100dvh;
+            /* Menggunakan tinggi dinamis yang dihitung oleh JS */
         }
+
         .chat-header {
-            display: flex; align-items: center; padding: 10px 15px; background-color: #f8f8f8; border-bottom: 1px solid #e7e7e7; box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05); justify-content: space-between; flex-shrink: 0;
+            display: flex;
+            align-items: center;
+            padding: 10px 15px;
+            background-color: #f8f8f8;
+            border-bottom: 1px solid #e7e7e7;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+            justify-content: space-between;
+            flex-shrink: 0;
         }
+
         .chat-header img {
-            width: 40px; height: 40px; border-radius: 50%; margin-right: 15px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 15px;
         }
+
         .chat-header h1 {
-            font-size: 1.1em; font-weight: 600; margin: 0;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin: 0;
         }
+
         .chat-messages {
-            flex: 1; padding: 20px 10px; overflow-y: auto; display: flex; flex-direction: column; gap: 12px; background-color: var(--background-color);
+            flex: 1;
+            padding: 20px 10px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            background-color: var(--background-color);
         }
+
         .message {
-            padding: 10px 15px; border-radius: 18px; max-width: 75%; word-wrap: break-word; line-height: 1.4;
+            padding: 10px 15px;
+            border-radius: 18px;
+            max-width: 75%;
+            word-wrap: break-word;
+            line-height: 1.4;
         }
+
         .user-message {
-            background-color: var(--user-bubble-color); color: var(--text-color-light); align-self: flex-end; border-bottom-right-radius: 4px;
+            background-color: var(--user-bubble-color);
+            color: var(--text-color-light);
+            align-self: flex-end;
+            border-bottom-right-radius: 4px;
         }
+
         .dewangga-message {
-            background-color: var(--dewangga-bubble-color); color: var(--text-color-dark); align-self: flex-start; border-bottom-left-radius: 4px;
+            background-color: var(--dewangga-bubble-color);
+            color: var(--text-color-dark);
+            align-self: flex-start;
+            border-bottom-left-radius: 4px;
         }
+
         .chat-form-container {
-            padding: 10px; background-color: #f8f8f8; border-top: 1px solid #e7e7e7; flex-shrink: 0;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-top: 1px solid #e7e7e7;
+            flex-shrink: 0;
         }
+
         .chat-form {
-            display: flex; align-items: center; gap: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
+
         .chat-form input {
-            flex: 1; border: 1px solid #ddd; border-radius: 20px; padding: 10px 15px; font-size: 1em; outline: none;
+            flex: 1;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            padding: 10px 15px;
+            font-size: 1em;
+            outline: none;
         }
+
         .chat-form button {
-            background: var(--user-bubble-color); border: none; color: white; border-radius: 50%; width: 40px; height: 40px; cursor: pointer; display: flex; align-items: center; justify-content: center;
+            background: var(--user-bubble-color);
+            border: none;
+            color: white;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
+
         .chat-form button svg {
-            width: 20px; height: 20px; transform: translateX(1px);
+            width: 20px;
+            height: 20px;
+            transform: translateX(1px);
         }
+
         .typing-indicator {
-            display: flex; align-items: center; padding: 15px !important;
+            display: flex;
+            align-items: center;
+            padding: 15px !important;
         }
+
         .typing-indicator span {
-            height: 8px; width: 8px; background-color: #999; border-radius: 50%; display: inline-block; margin: 0 2px; animation: bounce 1.4s infinite ease-in-out both;
+            height: 8px;
+            width: 8px;
+            background-color: #999;
+            border-radius: 50%;
+            display: inline-block;
+            margin: 0 2px;
+            animation: bounce 1.4s infinite ease-in-out both;
         }
-        .typing-indicator span:nth-child(2) { animation-delay: 0.2s; }
-        .typing-indicator span:nth-child(3) { animation-delay: 0.4s; }
-        @keyframes bounce { 0%, 80%, 100% { transform: scale(0); } 40% { transform: scale(1.0); } }
-        
+
+        .typing-indicator span:nth-child(2) {
+            animation-delay: 0.2s;
+        }
+
+        .typing-indicator span:nth-child(3) {
+            animation-delay: 0.4s;
+        }
+
+        @keyframes bounce {
+
+            0%,
+            80%,
+            100% {
+                transform: scale(0);
+            }
+
+            40% {
+                transform: scale(1.0);
+            }
+        }
+
         /* == MODAL STYLES == */
         .modal-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; background-color: rgba(0, 0, 0, 0.6); display: none; justify-content: center; align-items: center; z-index: 1000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.6);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
         }
+
         .modal-content {
-            background-color: white; padding: 30px; border-radius: 15px; text-align: center; width: 300px; max-width: 90%; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); max-height: 90vh; overflow-y: auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            width: 300px;
+            max-width: 90%;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            max-height: 90vh;
+            overflow-y: auto;
         }
+
         .modal-pfp {
-            width: 120px; height: 120px; border-radius: 50%; border: 3px solid #f0f0f0; margin-bottom: 15px; cursor: pointer;
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            border: 3px solid #f0f0f0;
+            margin-bottom: 15px;
+            cursor: pointer;
         }
-        .modal-content h2 { margin: 0 0 10px 0; font-size: 1.8em; }
-        .modal-content .bio { margin: 0; color: #555; font-size: 0.95em; }
-        .modal-content .bio-trek { margin: 5px 0 25px 0; color: #777; font-style: italic; font-size: 0.9em; }
-        #image-fullscreen-modal img { max-width: 90%; max-height: 90%; border-radius: 5px; }
-        .modal-actions { display: flex; gap: 15px; margin-top: 25px; }
-        .action-button { flex: 1; padding: 12px; border: none; border-radius: 8px; color: white; font-size: 1em; font-weight: bold; cursor: pointer; display: flex; justify-content: center; align-items: center; }
-        .delete-button { background-color: #E74C3C; }
-        .call-button { background-color: #2ECC71; }
-        .call-button svg { width: 24px; height: 24px; }
-        .confirm-content { background-color: white; padding: 25px; border-radius: 12px; width: 320px; max-width: 90%; text-align: center; box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2); }
-        .confirm-content h3 { margin-top: 0; margin-bottom: 10px; font-size: 1.2em; }
-        .confirm-content p { margin: 0 0 20px 0; color: #666; font-size: 0.9em; line-height: 1.5; }
-        .confirm-actions { display: flex; gap: 10px; }
-        .confirm-button { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid #ddd; background-color: #f0f0f0; font-weight: bold; cursor: pointer; }
-        .confirm-button.delete { background-color: #E74C3C; border-color: #E74C3C; color: white; }
-        .profile-info-wrapper { display: flex; align-items: center; cursor: pointer; }
-        .header-icon-button { background: none; border: none; padding: 8px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; }
-        .header-icon-button svg { width: 24px; height: 24px; fill: #333; }
+
+        .modal-content h2 {
+            margin: 0 0 10px 0;
+            font-size: 1.8em;
+        }
+
+        .modal-content .bio {
+            margin: 0;
+            color: #555;
+            font-size: 0.95em;
+        }
+
+        .modal-content .bio-trek {
+            margin: 5px 0 25px 0;
+            color: #777;
+            font-style: italic;
+            font-size: 0.9em;
+        }
+
+        #image-fullscreen-modal img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 5px;
+        }
+
+        .modal-actions {
+            display: flex;
+            gap: 15px;
+            margin-top: 25px;
+        }
+
+        .action-button {
+            flex: 1;
+            padding: 12px;
+            border: none;
+            border-radius: 8px;
+            color: white;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .delete-button {
+            background-color: #E74C3C;
+        }
+
+        .call-button {
+            background-color: #2ECC71;
+        }
+
+        .call-button svg {
+            width: 24px;
+            height: 24px;
+        }
+
+        .confirm-content {
+            background-color: white;
+            padding: 25px;
+            border-radius: 12px;
+            width: 320px;
+            max-width: 90%;
+            text-align: center;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .confirm-content h3 {
+            margin-top: 0;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+
+        .confirm-content p {
+            margin: 0 0 20px 0;
+            color: #666;
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .confirm-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .confirm-button {
+            flex: 1;
+            padding: 10px;
+            border-radius: 8px;
+            border: 1px solid #ddd;
+            background-color: #f0f0f0;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .confirm-button.delete {
+            background-color: #E74C3C;
+            border-color: #E74C3C;
+            color: white;
+        }
+
+        .profile-info-wrapper {
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .header-icon-button {
+            background: none;
+            border: none;
+            padding: 8px;
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .header-icon-button svg {
+            width: 24px;
+            height: 24px;
+            fill: #333;
+        }
 
         /* == TAMPILAN TELEPON (DEFAULT UNTUK MOBILE VERTIKAL & PC) == */
         #call-screen-modal {
-            background-color: #1C1C1E; flex-direction: column; justify-content: space-between; padding: 40px 20px; box-sizing: border-box;
+            background-color: #1C1C1E;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 40px 20px;
+            box-sizing: border-box;
         }
+
         .call-content {
-            display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; color: white; flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+            flex: 1;
         }
+
         .call-pfp {
-            width: 150px; height: 150px; border-radius: 50%; margin-bottom: 20px;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            margin-bottom: 20px;
         }
+
         .call-name {
-            font-size: 2.5em; font-weight: 300; margin: 0;
+            font-size: 2.5em;
+            font-weight: 300;
+            margin: 0;
         }
+
         #call-status {
-            font-size: 1.2em; color: #8E8E93; margin-top: 10px; min-height: 25px;
+            font-size: 1.2em;
+            color: #8E8E93;
+            margin-top: 10px;
+            min-height: 25px;
         }
+
         .call-actions {
-            width: 100%; display: flex; justify-content: center; flex-shrink: 0; padding-bottom: 20px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            flex-shrink: 0;
+            padding-bottom: 20px;
         }
+
         .hang-up-button {
-            width: 70px; height: 70px; border-radius: 50%; border: none; background-color: #E74C3C; color: white; cursor: pointer; display: flex; justify-content: center; align-items: center;
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            border: none;
+            background-color: #E74C3C;
+            color: white;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
+
         .hang-up-button svg {
-            width: 35px; height: 35px;
+            width: 35px;
+            height: 35px;
         }
-        
+
         /* ========================================================= */
         /* == PENYESUAIAN KHUSUS MOBILE HORIZONTAL (LANDSCAPE 16:9) == */
         /* ========================================================= */
         @media screen and (orientation: landscape) and (max-height: 500px) {
-            .message { max-width: 60%; }
-            #call-screen-modal {
-                flex-direction: row; justify-content: space-evenly; align-items: center; gap: 20px; padding: 10px 20px;
+            .message {
+                max-width: 60%;
             }
-            .call-content { flex: 1; }
-            .call-actions { width: auto; flex-shrink: 0; padding-bottom: 0; }
-            .call-pfp { width: 90px; height: 90px; margin-bottom: 10px; }
-            .call-name { font-size: 1.8em; }
-            #call-status { font-size: 1em; }
+
+            #call-screen-modal {
+                flex-direction: row;
+                justify-content: space-evenly;
+                align-items: center;
+                gap: 20px;
+                padding: 10px 20px;
+            }
+
+            .call-content {
+                flex: 1;
+            }
+
+            .call-actions {
+                width: auto;
+                flex-shrink: 0;
+                padding-bottom: 0;
+            }
+
+            .call-pfp {
+                width: 90px;
+                height: 90px;
+                margin-bottom: 10px;
+            }
+
+            .call-name {
+                font-size: 1.8em;
+            }
+
+            #call-status {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
@@ -158,7 +455,11 @@
                 <h1>Dewangga</h1>
             </div>
             <button id="header-call-btn" class="header-icon-button" aria-label="Telepon">
-                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.02.74-.25 1.02l-2.2 2.2z"></path></svg>
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.02.74-.25 1.02l-2.2 2.2z">
+                    </path>
+                </svg>
             </button>
         </header>
         <main class="chat-messages" id="chat-messages">
@@ -168,7 +469,9 @@
             <form class="chat-form" id="chat-form">
                 <input type="text" id="message-input" placeholder="Ketik pesan..." autocomplete="off">
                 <button type="submit" aria-label="Kirim">
-                    <svg viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path></svg>
+                    <svg viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"></path>
+                    </svg>
                 </button>
             </form>
         </footer>
@@ -181,7 +484,11 @@
             <p class="bio-trek">Gak Tau Males Pengen Beli Truk</p>
             <div class="modal-actions">
                 <button id="call-btn" class="action-button call-button" aria-label="Telepon">
-                    <svg fill="currentColor" viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.02.74-.25 1.02l-2.2 2.2z"></path></svg>
+                    <svg fill="currentColor" viewBox="0 0 24 24">
+                        <path
+                            d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.02.74-.25 1.02l-2.2 2.2z">
+                        </path>
+                    </svg>
                 </button>
                 <button id="delete-chat-btn" class="action-button delete-button">Delete Chat</button>
             </div>
@@ -198,7 +505,11 @@
         </div>
         <div class="call-actions">
             <button id="hang-up-btn" class="hang-up-button" aria-label="Tutup Telepon">
-                <svg fill="currentColor" viewBox="0 0 24 24"><path d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z"></path></svg>
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                    <path
+                        d="M20.01 15.38c-1.23 0-2.42-.2-3.53-.56-.35-.12-.74-.03-1.01.24l-1.57 1.97c-2.83-1.35-5.48-3.9-6.89-6.83l1.95-1.66c.27-.28.35-.67.24-1.02-.37-1.11-.56-2.3-.56-3.53 0-.54-.45-.99-.99-.99H4.19C3.65 3 3 3.24 3 3.99 3 13.28 10.73 21 20.01 21c.71 0 .99-.63.99-1.18v-3.45c0-.54-.45-.99-.99-.99z">
+                    </path>
+                </svg>
             </button>
         </div>
     </div>
@@ -216,17 +527,27 @@
     </div>
 
     <script>
-        // SCRIPT UNTUK MENGHITUNG TINGGI LAYAR DINAMIS (ANTI-ADDRESS BAR)
-        //const setVh = () => {
-            //let vh = window.innerHeight * 0.01;
-            //document.documentElement.style.setProperty('--vh', `${vh}px`);
-        //};
-        //window.addEventListener('resize', setVh);
-        //window.addEventListener('orientationchange', setVh);
-        //setVh(); // Jalankan saat pertama kali dimuat
+        // --- MULAI BLOK FUNGSI KEYBOARD ---
+        const adjustLayoutOnKeyboard = () => {
+            const container = document.querySelector('.chat-container');
+            if (container && window.visualViewport) {
+                const vv = window.visualViewport;
+                // 1. Paksa tinggi container agar sama dengan tinggi area yang terlihat
+                container.style.height = `${vv.height}px`;
 
-        const dewanggaReplies = ["Gak tau males pengen beli trek", "Gatau males pengen beli trek", "Ga tau males pengen beli trek", "Nggak tau males pengen beli trek", "Kagak tau males pengen beli trek", "Gak tau maleus pengen beli trek", "Gak tau mager pengen beli trek", "Gak tau mls pengen beli trek", "Gatau malezz pengen beli trek", "Gak tau malesss pengen beli trek", "Gak tau males pingin beli trek", "Gak tau males mau beli trek", "Gak tau males pgn beli trek", "Gak tau males ingin beli trek", "Gak tau males kepengen beli trek", "Gak tau males pengen bli trek", "Gak tau males pengen ngebeli trek", "Gak tau males pengen borong trek", "Gatau males pgn bli trek", "Gak tau males mau bli trek", "Gak tau males pengen beli treuk", "Gak tau males pengen beli treq", "Gak tau males pengen beli treg", "Gak tau males pengen beli truk", "Gak tau males pengen beli trekk", "Gk tau mls pgn bli trek", "Gatau mager mau beli treq", "Nggak tau maleus pingin beli treuk", "Ga tau mls kepengen beli truk", "Kagatau mager pgn bli treg", "Gak tauuu malesss pengen beli treeeeek", "Gatauuu mager pingin beli treukkkk", "Gak tau maleeeus mau beli treq", "Nggak tau males pengen beli tre-e-e-ek", "Gaaak tauuu males pgn beli truuuk", "GATAU MALES PENGEN BELI TREK", "gatau males pengen beli trek", "GAK TAU MALES MAU BELI TRUK", "GK TAU MLS PGN BLI TREQ", "ENGGA TAU MALES PENGEN BELI TREK"];
-        
+                // 2. Lawan efek dorongan ke atas dengan menggeser container ke bawah
+                container.style.transform = `translateY(${vv.offsetTop}px)`;
+            }
+        };
+
+        // Jalankan fungsi di atas setiap kali keyboard muncul/hilang (viewport berubah)
+        if (window.visualViewport) {
+            window.visualViewport.addEventListener('resize', adjustLayoutOnKeyboard);
+        }
+        // --- AKHIR BLOK FUNGSI KEYBOARD ---
+
+        const dewanggaReplies = ["Gak tau males pengen beli trek", "Gatau males pengen beli trek", "Ga tau males pengen beli trek", "Nggak tau males pengen beli trek", "Kagak tau males pengen beli trek", "Gak tau maleus pengen beli trek", "Gak tau mager pengen beli trek", "Gak tau mls pengen beli trek", "Gatau malezz pengen beli trek", "Gak tau malesss pengen beli trek", "Gak tau males pingin beli trek", "Gak tau males mau beli trek", "Gak tau males pgn beli trek", "Gak tau males ingin beli trek", "Gak tau males kepengen beli trek", "Gak tau males pengen bli trek", "Gak tau males pengen ngebeli trek", "Gak tau males pengen blie trek", "Gatau males pgn bli trek", "Gak tau males mau bli trek", "Gak tau males pengen beli treuk", "Gak tau males pengen beli treq", "Gak tau males pengen beli treg", "Gak tau males pengen beli truk", "Gak tau males pengen beli trekk", "Gk tau mls pgn bli trek", "Gatau mager mau beli treq", "Nggak tau maleus pingin beli treuk", "Ga tau mls kepengen beli truk", "Kagatau mager pgn bli treg", "Gak tauuu malesss pengen beli treeeeek", "Gatauuu mager pingin beli treukkkk", "Gak tau maleeeus mau beli treq", "Nggak tau males pengen beli tre-e-e-ek", "Gaaak tauuu males pgn beli truuuk", "GATAU MALES PENGEN BELI TREK", "gatau males pengen beli trek", "GAK TAU MALES MAU BELI TRUK", "GK TAU MLS PGN BLI TREQ", "ENGGA TAU MALES PENGEN BELI TREK"];
+
         let callTimerInterval;
         let callSequenceTimeout1;
         let callSequenceTimeout2;
@@ -254,7 +575,7 @@
 
         function openModal(modal) { if (modal) modal.style.display = 'flex'; }
         function closeModal(modal) { if (modal) modal.style.display = 'none'; }
-        
+
         function addMessage(text, sender) {
             const messageDiv = document.createElement('div');
             messageDiv.classList.add('message', `${sender}-message`);
@@ -339,7 +660,7 @@
                 }, 2000);
             }
         });
-        
+
         profileOpener.addEventListener('click', () => openModal(profileModal));
         profileModal.addEventListener('click', (e) => { if (e.target === profileModal) closeModal(profileModal); });
         modalProfilePic.addEventListener('click', () => {
@@ -347,7 +668,7 @@
             openModal(imageFullscreenModal);
         });
         imageFullscreenModal.addEventListener('click', () => closeModal(imageFullscreenModal));
-        
+
         callBtn.addEventListener('click', () => {
             closeModal(profileModal);
             openModal(callScreenModal);
@@ -377,18 +698,37 @@
                 closeModal(confirmModal);
             }
         });
-        
+
+        // == LOGIKA BARU UNTUK REGISTRASI & UPDATE SERVICE WORKER ==
         if ('serviceWorker' in navigator) {
-            window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./sw.js')
-                    .then(registration => {
-                        console.log('ServiceWorker registration successful with scope: ', registration.scope);
-                    })
-                    .catch(err => {
-                        console.log('ServiceWorker registration failed: ', err);
-                    });
+            navigator.serviceWorker.register('./sw.js').then(reg => {
+                // Listener ini akan terpicu jika browser menemukan file sw.js yang baru
+                reg.onupdatefound = () => {
+                    const newWorker = reg.installing;
+                    newWorker.onstatechange = () => {
+                        // Saat worker baru sudah selesai di-install
+                        if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+                            console.log('Update baru siap, meminta untuk aktif...');
+                            // Kirim pesan ke sw.js baru untuk memaksanya aktif (skipWaiting)
+                            newWorker.postMessage({ action: 'skipWaiting' });
+                        }
+                    };
+                };
+            }).catch(error => {
+                console.error('Registrasi Service Worker gagal:', error);
+            });
+
+            // Listener ini akan terpicu saat Service Worker baru berhasil mengambil alih halaman
+            let refreshing;
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+                if (refreshing) return;
+                console.log('Controller baru aktif, me-reload halaman...');
+                // Reload halaman untuk menampilkan konten dari cache yang baru
+                window.location.reload();
+                refreshing = true;
             });
         }
     </script>
 </body>
+
 </html>
