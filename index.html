@@ -404,6 +404,31 @@
             height: 35px;
         }
 
+        /* Tambahkan ini di dalam <style> */
+        .system-message {
+            background-color: #E1F3FB;
+            color: #58666F;
+            padding: 8px 12px;
+            border-radius: 7.5px;
+            font-size: 0.8em;
+            text-align: center;
+            margin: 5px auto;
+            max-width: fit-content;
+            box-shadow: 0 1px 0.5px rgba(0, 0, 0, 0.13);
+        }
+
+        .system-message.clickable {
+            cursor: pointer;
+        }
+
+        .system-message-icon {
+            display: inline-block;
+            width: 1em;
+            height: 1em;
+            margin-right: 5px;
+            vertical-align: text-bottom;
+        }
+
         /* ========================================================= */
         /* == PENYESUAIAN KHUSUS MOBILE HORIZONTAL (LANDSCAPE 16:9) == */
         /* ========================================================= */
@@ -443,6 +468,12 @@
             #call-status {
                 font-size: 1em;
             }
+
+            #encryption-info-modal .modal-content {
+                max-height: 65vh;
+                font-size: 1em;
+                overflow-y: auto;
+            }
         }
     </style>
 </head>
@@ -463,7 +494,6 @@
             </button>
         </header>
         <main class="chat-messages" id="chat-messages">
-            <div class="message dewangga-message">Gatau Males Pengen Beli Truk</div>
         </main>
         <footer class="chat-form-container">
             <form class="chat-form" id="chat-form">
@@ -526,6 +556,37 @@
         </div>
     </div>
 
+    <div id="encryption-info-modal" class="modal-overlay">
+        <div class="modal-content" style="text-align: left;">
+            <h3 style="text-align: center; margin-top:0;">Pesan dan panggilan Anda bersifat pribadi</h3>
+            <p style="font-size: 0.9em; line-height: 1.6;">Enkripsi end-to-end memastikan pesan dan panggilan pribadi
+                Anda hanya dapat diakses oleh Anda dan orang yang Anda pilih. Tidak seorang pun di luar chat ini, bahkan
+                Watsup, yang dapat membaca atau mendengarkannya. Ini termasuk:<br>
+            <ul>
+                <li>Pesan teks dan suara</li>
+                <li>Panggilan audio dan video</li>
+                <li>Foto, video, dan dokumen</li>
+                <li>Berbagi lokasi</li>
+                <li>Pembaruan status</li>
+            </ul>
+            </p>
+            <div class="confirm-actions" style="justify-content: flex-end;">
+                <button id="encryption-ok-btn" class="confirm-button"
+                    style="background-color:#2ECC71; color:white; border:none;">OK</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="parody-info-modal" class="modal-overlay">
+        <div class="confirm-content">
+            <p>Chat ini adalah dengan Akun Parodi. Dewangga terdaftar sebagai akun parodi, tetapi Watsup belum
+                mengonfirmasi nama tersebut.</p>
+            <div class="confirm-actions" style="justify-content: center;">
+                <button id="parody-ok-btn" class="confirm-button">OK</button>
+            </div>
+        </div>
+    </div>
+
     <script>
         // --- MULAI BLOK FUNGSI KEYBOARD ---
         const adjustLayoutOnKeyboard = () => {
@@ -545,6 +606,9 @@
             window.visualViewport.addEventListener('resize', adjustLayoutOnKeyboard);
         }
         // --- AKHIR BLOK FUNGSI KEYBOARD ---
+
+        // Tambahkan baris ini di atas 'const dewanggaReplies'
+        let isFirstMessage = true;
 
         const dewanggaReplies = ["Gak tau males pengen beli trek", "Gatau males pengen beli trek", "Ga tau males pengen beli trek", "Nggak tau males pengen beli trek", "Kagak tau males pengen beli trek", "Gak tau maleus pengen beli trek", "Gak tau mager pengen beli trek", "Gak tau mls pengen beli trek", "Gatau malezz pengen beli trek", "Gak tau malesss pengen beli trek", "Gak tau males pingin beli trek", "Gak tau males mau beli trek", "Gak tau males pgn beli trek", "Gak tau males ingin beli trek", "Gak tau males kepengen beli trek", "Gak tau males pengen bli trek", "Gak tau males pengen ngebeli trek", "Gak tau males pengen blie trek", "Gatau males pgn bli trek", "Gak tau males mau bli trek", "Gak tau males pengen beli treuk", "Gak tau males pengen beli treq", "Gak tau males pengen beli treg", "Gak tau males pengen beli truk", "Gak tau males pengen beli trekk", "Gk tau mls pgn bli trek", "Gatau mager mau beli treq", "Nggak tau maleus pingin beli treuk", "Ga tau mls kepengen beli truk", "Kagatau mager pgn bli treg", "Gak tauuu malesss pengen beli treeeeek", "Gatauuu mager pingin beli treukkkk", "Gak tau maleeeus mau beli treq", "Nggak tau males pengen beli tre-e-e-ek", "Gaaak tauuu males pgn beli truuuk", "GATAU MALES PENGEN BELI TREK", "gatau males pengen beli trek", "GAK TAU MALES MAU BELI TRUK", "GK TAU MLS PGN BLI TREQ", "ENGGA TAU MALES PENGEN BELI TREK"];
 
@@ -572,6 +636,10 @@
         const confirmOkBtn = document.getElementById('confirm-ok-btn');
         const confirmCancelBtn = document.getElementById('confirm-cancel-btn');
         const headerCallBtn = document.getElementById('header-call-btn');
+        const encryptionInfoModal = document.getElementById('encryption-info-modal');
+        const parodyInfoModal = document.getElementById('parody-info-modal');
+        const encryptionOkBtn = document.getElementById('encryption-ok-btn');
+        const parodyOkBtn = document.getElementById('parody-ok-btn');
 
         function openModal(modal) { if (modal) modal.style.display = 'flex'; }
         function closeModal(modal) { if (modal) modal.style.display = 'none'; }
@@ -621,7 +689,7 @@
                 callStatus.textContent = 'Berdering...';
                 callSequenceTimeout2 = setTimeout(() => {
                     connectCall();
-                }, 2000);
+                }, 3000);
             }, 3000);
         }
         function hangUpCall() {
@@ -635,7 +703,7 @@
             hangUpBtn.disabled = true;
             const finalDuration = formatTime(callSeconds);
             if (callSeconds > 0) {
-                callStatus.textContent = `Telepon Terputus • Durasi ${finalDuration}`;
+                callStatus.textContent = `Telepon Terputus • ${finalDuration}`;
             } else {
                 callStatus.textContent = `Telepon Terputus`;
             }
@@ -648,6 +716,24 @@
             event.preventDefault();
             const userMessage = input.value.trim();
             if (userMessage) {
+
+                // --- BLOK LOGIKA BARU UNTUK CHAT PERTAMA ---
+                if (isFirstMessage) {
+                    const todayDiv = document.createElement('div');
+                    todayDiv.classList.add('system-message');
+                    todayDiv.textContent = 'Hari Ini';
+                    messagesContainer.appendChild(todayDiv);
+
+                    const encryptedDiv = document.createElement('div');
+                    encryptedDiv.id = 'encrypted-message';
+                    encryptedDiv.classList.add('system-message', 'clickable');
+                    encryptedDiv.innerHTML = `<svg class="system-message-icon" fill="currentColor" viewBox="0 0 16 16"><path d="M8 1a2 2 0 0 1 2 2v4H6V3a2 2 0 0 1 2-2zm3 6V3a3 3 0 0 0-6 0v4a2 2 0 0 0-2 2v5a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2z"></path></svg> Pesan dan panggilan terenkripsi secara end-to-end. Ketuk untuk info lebih lanjut.`;
+                    messagesContainer.appendChild(encryptedDiv);
+
+                    encryptedDiv.addEventListener('click', () => openModal(encryptionInfoModal));
+                }
+                // --- AKHIR BLOK LOGIKA BARU ---
+
                 addMessage(userMessage, 'user');
                 input.value = '';
                 showTypingIndicator();
@@ -657,6 +743,20 @@
                     const randomIndex = Math.floor(Math.random() * dewanggaReplies.length);
                     const dewanggaMessage = dewanggaReplies[randomIndex];
                     addMessage(dewanggaMessage, 'dewangga');
+
+                    // --- BLOK LOGIKA BARU UNTUK JAWABAN PERTAMA ---
+                    if (isFirstMessage) {
+                        const parodyDiv = document.createElement('div');
+                        parodyDiv.id = 'parody-message';
+                        parodyDiv.classList.add('system-message', 'clickable');
+                        parodyDiv.textContent = 'Chat ini adalah dengan Akun Parodi. Ketuk untuk info lebih lanjut.';
+                        messagesContainer.appendChild(parodyDiv);
+                        messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+                        parodyDiv.addEventListener('click', () => openModal(parodyInfoModal));
+                        isFirstMessage = false; // Setel ulang flag agar tidak muncul lagi
+                    }
+                    // --- AKHIR BLOK LOGIKA BARU ---
                 }, 2000);
             }
         });
@@ -685,8 +785,13 @@
             openModal(confirmModal);
         });
         confirmOkBtn.addEventListener('click', () => {
+            // 1. Kosongkan seluruh riwayat chat
             messagesContainer.innerHTML = '';
-            addMessage('Gatau Males Pengen Beli Truk', 'dewangga');
+
+            // 2. KUNCI UTAMA: Reset status ke "chat pertama"
+            isFirstMessage = true;
+
+            // 3. Tutup semua modal yang terbuka
             closeModal(confirmModal);
             closeModal(profileModal);
         });
@@ -698,6 +803,12 @@
                 closeModal(confirmModal);
             }
         });
+        // Tambahkan kode ini di dekat event listener lainnya
+        encryptionOkBtn.addEventListener('click', () => closeModal(encryptionInfoModal));
+        encryptionInfoModal.addEventListener('click', (e) => { if (e.target === encryptionInfoModal) closeModal(encryptionInfoModal); });
+
+        parodyOkBtn.addEventListener('click', () => closeModal(parodyInfoModal));
+        parodyInfoModal.addEventListener('click', (e) => { if (e.target === parodyInfoModal) closeModal(parodyInfoModal); });
 
         // == LOGIKA BARU UNTUK REGISTRASI & UPDATE SERVICE WORKER ==
         if ('serviceWorker' in navigator) {
